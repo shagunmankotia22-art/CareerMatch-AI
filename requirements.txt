@@ -1,0 +1,8 @@
+langchain-ollama
+pypdf
+langchain-community
+langchain-chroma
+streamlit
+fastapi
+uvicorn[standard]
+python-multipart
