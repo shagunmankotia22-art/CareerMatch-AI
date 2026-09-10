@@ -1,9 +1,4 @@
-const skills = [
-  ["React", 82],
-  ["Java", 74],
-  ["SQL", 68],
-  ["DSA", 52]
-];
+import { SKILLS as skills, READINESS, AI_SUGGESTION } from "../data/profile";
 
 function Progress() {
 
@@ -32,7 +27,7 @@ function Progress() {
           <div className="score-ring">
 
             <strong>
-              74
+              {READINESS}
             </strong>
 
             <span>
@@ -101,7 +96,7 @@ function Progress() {
           </span>
 
           <h3>
-            Learn TypeScript
+            {AI_SUGGESTION.title}
           </h3>
 
           <p>
