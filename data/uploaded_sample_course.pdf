@@ -1,0 +1,43 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R 5 0 R] /Count 2 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 7 0 R >> >> /Contents 4 0 R >>
+endobj
+4 0 obj
+<< /Length 417 >>
+stream
+BT /F1 16 Tf 50 740 Td (CS 501: AI and Information Retrieval) Tj /F1 12 Tf 0 -30 Td (Lecture 1: Introduction to Retrieval-Augmented Generation - RAG) Tj 0 -20 Td (Explain how RAG works: RAG combines information retrieval with an LLM.) Tj 0 -15 Td (Documents are loaded, split into chunks, embedded, and stored in Chroma.) Tj 0 -15 Td (When a query is asked, relevant chunks are retrieved and passed to the LLM.) Tj ET
+endstream
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 7 0 R >> >> /Contents 6 0 R >>
+endobj
+6 0 obj
+<< /Length 377 >>
+stream
+BT /F1 16 Tf 50 740 Td (Lecture 2: Text Chunking and Text Splitters) Tj /F1 12 Tf 0 -30 Td (What is a text splitter? A text splitter breaks large documents into small chunks.) Tj 0 -20 Td (RecursiveCharacterTextSplitter splits hierarchically by paragraphs, lines, and spaces.) Tj 0 -15 Td (It uses chunk_size and chunk_overlap to maintain context across adjacent chunks.) Tj ET
+endstream
+endobj
+7 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 8
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000121 00000 n 
+0000000247 00000 n 
+0000000715 00000 n 
+0000000841 00000 n 
+0000001269 00000 n 
+trailer
+<< /Size 8 /Root 1 0 R >>
+startxref
+1339
+%%EOF
