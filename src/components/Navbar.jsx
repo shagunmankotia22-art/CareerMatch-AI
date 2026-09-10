@@ -85,8 +85,8 @@ const [search, setSearch] = useState("");
 </button>
 
         <button
-          // className="profile"
-          // onClick={() => navigate("/profile")}
+          className="profile"
+          onClick={() => navigate("/profile")}
         >
 
           <div className="avatar">

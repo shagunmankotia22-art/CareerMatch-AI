@@ -1,167 +1,158 @@
-import { useState, useMemo } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import { computeMatches } from "../data/jobs";
-import { useSavedJobs } from "../hooks/useSavedJobs";
-import Toast from "../components/Toast";
-
-const SKILLS = [
-  { key: "React", className: "react" },
-  { key: "Java", className: "java" },
-  { key: "SQL", className: "sql" },
-  { key: "DSA", className: "dsa" },
+const jobs = [
+  {
+    company: "Microsoft",
+    role: "Frontend Developer Intern",
+    match: 92,
+    skills: ["React", "JavaScript"]
+  },
+  {
+    company: "TCS",
+    role: "Software Developer Intern",
+    match: 87,
+    skills: ["Java", "DSA"]
+  },
+  {
+    company: "Google",
+    role: "Software Engineering Intern",
+    match: 79,
+    skills: ["Python", "DSA"]
+  }
 ];
 
 function Career() {
-  const location = useLocation();
+
   const navigate = useNavigate();
-  const { isSaved, toggleJob } = useSavedJobs();
-
-  const [query] = useState(location.state?.query || "");
-  const [skillFilter, setSkillFilter] = useState(null);
-  const [toast, setToast] = useState(null);
-
-  const jobs = useMemo(
-    () => computeMatches(query, skillFilter),
-    [query, skillFilter]
-  );
-
-  const topThree = jobs.slice(0, 3);
-  const rest = jobs.slice(3);
-
-  const handleSave = (job) => {
-    const wasSaved = isSaved(job.id);
-    toggleJob(job);
-    setToast(
-      wasSaved
-        ? `Removed ${job.role} from Saved`
-        : `Saved ${job.role} at ${job.company}`
-    );
-  };
+  const location = useLocation();
 
   return (
     <section className="career-page">
-      <div className="career-heading">
-        <div>
-          <span className="eyebrow">CAREER INTELLIGENCE</span>
-          <h2>Your matched opportunities.</h2>
 
-          {query ? (
+      <div className="career-heading">
+
+        <div>
+
+          <span className="eyebrow">
+            CAREER UNIVERSE
+          </span>
+
+          <h2>
+            Opportunities connected to you.
+          </h2>
+
+          {location.state?.query && (
             <p className="query-result">
-              Matching against <strong>"{query}"</strong>
-            </p>
-          ) : (
-            <p className="query-result">
-              Showing <strong>{jobs.length}</strong> opportunities based on
-              your profile
+              Searching for:
+              <strong>
+                "{location.state.query}"
+              </strong>
             </p>
           )}
+
         </div>
 
-        <button onClick={() => navigate("/")} className="back">
-          ←
+        <button>
+          Filters ↗
         </button>
+
       </div>
+
+
+      {/* UNIVERSE */}
 
       <div className="career-universe">
-        <div className="orbit orbit-one" />
-        <div className="orbit orbit-two" />
 
-        {SKILLS.map((s) => (
-          <button
-            key={s.key}
-            onClick={() =>
-              setSkillFilter(skillFilter === s.key ? null : s.key)
-            }
-            className={
-              "career-node " +
-              s.className +
-              (skillFilter === s.key ? " node-selected" : "")
-            }
-          >
-            {s.key}
-          </button>
-        ))}
+        <div className="orbit orbit-one">
+
+          <span className="career-node react">
+            React
+          </span>
+
+          <span className="career-node java">
+            Java
+          </span>
+
+        </div>
+
+
+        <div className="orbit orbit-two">
+
+          <span className="career-node sql">
+            SQL
+          </span>
+
+          <span className="career-node dsa">
+            DSA
+          </span>
+
+        </div>
+
 
         <div className="you">
-          <small>YOU</small>
-          <strong>{jobs.length}</strong>
-          <small>matches</small>
+
+          <small>
+            YOU
+          </small>
+
+          <strong>
+            74%
+          </strong>
+
         </div>
+
+
+        {/* JOB CARDS */}
 
         <div className="career-results">
-          {topThree.map((job) => (
-            <div key={job.id} className="job-card">
+
+          {jobs.map((job) => (
+
+            <div
+              className="job-card"
+              key={job.company}
+            >
+
               <div className="job-company">
-                <div className="company-icon">{job.initial}</div>
+                <div className="company-icon">
+                  {job.company[0]}
+                </div>
+
                 <div>
-                  <strong>{job.role}</strong>
+                  <strong>
+                    {job.company}
+                  </strong>
+
                   <span>
-                    {job.company} · {job.location}
+                    {job.role}
                   </span>
                 </div>
               </div>
 
-              <div className="job-match">{job.match}% match</div>
 
-              <div className="job-skills">
-                {job.tags.map((t) => (
-                  <span key={t}>{t}</span>
-                ))}
+              <div className="job-match">
+                {job.match}%
               </div>
 
-              <button
-                className={"save-btn" + (isSaved(job.id) ? " saved" : "")}
-                onClick={() => handleSave(job)}
-              >
-                {isSaved(job.id) ? "♥ Saved" : "♡ Save"}
-              </button>
+
+              <div className="job-skills">
+
+                {job.skills.map((skill) => (
+                  <span key={skill}>
+                    {skill}
+                  </span>
+                ))}
+
+              </div>
+
             </div>
+
           ))}
 
-          {topThree.length === 0 && (
-            <div className="job-card">
-              <strong>No matches for this filter</strong>
-              <p className="query-result">Try clearing the skill filter.</p>
-            </div>
-          )}
         </div>
+
       </div>
 
-      {rest.length > 0 && (
-        <div className="more-jobs-grid">
-          {rest.map((job) => (
-            <div key={job.id} className="job-card">
-              <div className="job-company">
-                <div className="company-icon">{job.initial}</div>
-                <div>
-                  <strong>{job.role}</strong>
-                  <span>
-                    {job.company} · {job.location}
-                  </span>
-                </div>
-              </div>
-
-              <div className="job-match">{job.match}% match</div>
-
-              <div className="job-skills">
-                {job.tags.map((t) => (
-                  <span key={t}>{t}</span>
-                ))}
-              </div>
-
-              <button
-                className={"save-btn" + (isSaved(job.id) ? " saved" : "")}
-                onClick={() => handleSave(job)}
-              >
-                {isSaved(job.id) ? "♥ Saved" : "♡ Save"}
-              </button>
-            </div>
-          ))}
-        </div>
-      )}
-
-      <Toast message={toast} onDone={() => setToast(null)} />
     </section>
   );
 }
