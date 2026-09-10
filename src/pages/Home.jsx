@@ -101,38 +101,54 @@ function Home() {
 
         <div className="quick-actions">
 
-          <button
-            onClick={() => {
-              const q = "Explain DBMS normalization";
-              setQuery(q);
-              navigate("/learn", { state: { query: q } });
-            }}
-          >
-            Explain DBMS
-            <span>↗</span>
-          </button>
+  <button
+    onClick={() => {
+      setQuery("Explain this from my course material");
+      navigate("/learn");
+    }}
+  >
+    <span className="quick-icon">✦</span>
+
+    <span>
+      <strong>Study from my course</strong>
+      <small>Ask questions from your PDFs</small>
+    </span>
+
+    <span className="quick-arrow">↗</span>
+  </button>
 
 
-          <button
-            onClick={() => {
-              const q = "Find internships for React";
-              setQuery(q);
-              navigate("/career", { state: { query: q } });
-            }}
-          >
-            Find internships
-            <span>↗</span>
-          </button>
+  <button
+    onClick={() => {
+      setQuery("Find jobs matching my skills");
+      navigate("/progress");
+    }}
+  >
+    <span className="quick-icon">⌁</span>
+
+    <span>
+      <strong>Find matching jobs</strong>
+      <small>Discover opportunities for you</small>
+    </span>
+
+    <span className="quick-arrow">↗</span>
+  </button>
 
 
-          <button
-            onClick={() => navigate("/progress")}
-          >
-            My career progress
-            <span>↗</span>
-          </button>
+  <button
+    onClick={() => navigate("/progress")}
+  >
+    <span className="quick-icon">◌</span>
 
-        </div>
+    <span>
+      <strong>See my skill gap</strong>
+      <small>Know what to learn next</small>
+    </span>
+
+    <span className="quick-arrow">↗</span>
+  </button>
+
+</div>
 
       </div>
 
